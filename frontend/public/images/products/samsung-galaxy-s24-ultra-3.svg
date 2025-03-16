@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800">
+  <!-- Background -->
+  <rect width="800" height="800" fill="#ffffff" />
+  
+  <!-- Border -->
+  <rect x="10" y="10" width="780" height="780" stroke="#dddddd" stroke-width="4" fill="none" />
+  
+  <!-- Phone Body - Red Variant -->
+  <rect x="300" y="150" width="200" height="400" rx="20" ry="20" fill="#b71c1c" stroke="#333333" stroke-width="4" />
+  
+  <!-- Phone Screen -->
+  <rect x="310" y="160" width="180" height="380" rx="10" ry="10" fill="#111111" />
+  
+  <!-- Camera Module -->
+  <rect x="320" y="170" width="40" height="120" rx="10" ry="10" fill="#333333" />
+  
+  <!-- Camera Lenses -->
+  <circle cx="340" cy="190" r="12" fill="#111111" stroke="#444444" stroke-width="2" />
+  <circle cx="340" cy="220" r="12" fill="#111111" stroke="#444444" stroke-width="2" />
+  <circle cx="340" cy="250" r="12" fill="#111111" stroke="#444444" stroke-width="2" />
+  
+  <!-- Product Name -->
+  <text x="400" y="610" font-family="Arial" font-size="40" font-weight="bold" text-anchor="middle" fill="#333333">Samsung Galaxy S24 Ultra</text>
+  
+  <!-- Variant Name -->
+  <text x="400" y="650" font-family="Arial" font-size="24" text-anchor="middle" fill="#666666">Samsung - Red Variant</text>
+</svg> 

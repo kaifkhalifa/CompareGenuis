@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Sony Electronics</title>
+    <base href="/"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1,
+      shrink-to-fit=no"/>
+    <link rel="shortcut icon" href="./assets/icons/Favicon_144x144.png"/>
+    <link rel="preload" href="./assets/fonts/SST/SSTPro-Bold.otf" as="font" crossorigin=""/>
+    <link rel="preload" href="./assets/fonts/SST/SSTPro-Roman.otf" as="font" crossorigin=""/>
+    <link rel="preload" href="./assets/fonts/SST/SSTPro-Medium.otf" as="font" crossorigin=""/>
+    <link rel="preload" href="./assets/fonts/SST/SSTPro-Light.otf" as="font" crossorigin=""/>
+    <link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon-57x57.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="./assets/icons/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="./assets/icons/apple-touch-icon-114x114.png"/>
+    <link rel="manifest" href="manifest.webmanifest"/>
+    <meta name="theme-color" content="#1976d2"/>
+    <meta name="occ-backend-base-url" content="https://api.cqiypyix22-sonyelect1-p1-public.model-t.cc.commerce.ondemand.com"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <!-- pricespider -->
+    <meta name="ps-key" content="1770-5fe261121cca92002e0b805a"/>
+    <!-- pricespider -->
+
+    <!-- Cybersource -->
+    <script src="https://flex.cybersource.com/cybersource/assets/microform/0.11/flex-microform.min.js" async=""></script>
+    <!-- Cybersource -->
+
+    <!-- Breadpayments head started -->
+    <script>
+      /*
+       * Create placeholder methods so library
+       * can be called before it is finished loading
+       */
+      var BreadPayments = BreadPayments || { snippetVersion: '1.2.1' };
+      if (!BreadPayments.init) {
+        var b = BreadPayments;
+        (b.on = function () {
+          var t = ['on'].concat(Array.prototype.slice.call(arguments));
+          (b.q = b.q || []).push(t);
+        }),
+          (b.submitRtps = function () {
+            var t = ['submitRtps'].concat(Array.prototype.slice.call(arguments));
+            (b.q = b.q || []).push(t);
+          }),
+          (b.setup = function () {
+            var t = ['setup'].concat(Array.prototype.slice.call(arguments));
+            (b.q = b.q || []).push(t);
+          }),
+          (b.registerPlacements = function () {
+            var t = ['registerPlacements'].concat(Array.prototype.slice.call(arguments));
+            (b.q = b.q || []).push(t);
+          });
+      }
+
+      BreadPayments.on('CARD:*', function (data) {
+        console.log('BreadPayments: ', this.event, data);
+      });
+    </script>
+    <!-- Breadpayments head ends here -->
+  <link rel="stylesheet" href="styles.28050592a98c3c2e.css"></head>
+  <body>
+    <app-root></app-root>
+
+    <!-- EDS team provided fix https://gist.github.com/mhamel06/9b9f65adbeb2649ff331a3087affbbc8 -->
+    <script id="bread-payment-1">
+      var smartEditLoadStarted = false;
+      if (window && window.location && /\/cx-preview*?/g.test(window.location.pathname)) {
+        var interval = window.setInterval(function () {
+          if (window.__smartedit__ && window.__smartedit__.SmarteditFactory) {
+            // IMPORTANT
+            // This can be removed after testing
+            console.log('smart edit still loading', new Date().toISOString());
+            smartEditLoadStarted = true;
+          } else if (window.__smartedit__ && !window.__smartedit__.SmarteditFactory) {
+            // IMPORTANT
+            // This can be removed after testing
+            console.log('Smart edit finished loading. Start loading SDK');
+            window.clearInterval(interval);
+            injectSDK();
+          }
+        }, 500);
+      } else if (window) {
+        injectSDK();
+      }
+
+      function injectSDK() {
+        var apiKey = 'd85bb52f-bb3d-431d-a7d7-a95804e689ef';
+        // Create Config
+        var config = {};
+        config.src = 'https://connect-preview.breadpayments.com/unified.sdk.js';
+        config.dataset = {
+          breadMerchantKey: apiKey
+        };
+
+        //Inject Script
+        var jsSdkScriptId = 'bread-js-sdk';
+        var bodyNode = document.getElementsByTagName('body')[0];
+        if (document.getElementById(jsSdkScriptId)) {
+          document.getElementById(jsSdkScriptId).remove();
+        }
+
+        var jsSdkScript = document.createElement('script');
+        jsSdkScript.src = config.src;
+        jsSdkScript.id = jsSdkScriptId;
+        jsSdkScript.async = true;
+        for (var key in config.dataset) {
+          jsSdkScript.dataset[key] = config.dataset[key];
+        }
+        bodyNode.appendChild(jsSdkScript);
+      }
+    </script>
+
+    <noscript>Please enable JavaScript to continue using this application.</noscript>
+  <script src="runtime.2675991e8859944a.js" type="module"></script><script src="polyfills.7966183b1b929fe8.js" type="module"></script><script src="scripts.52aa9237eb9ccab5.js" defer></script><script src="main.d0eb67dd57d8f963.js" type="module"></script></body>
+</html>

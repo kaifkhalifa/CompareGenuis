@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test SVG Images</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .image-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            width: calc(50% - 20px);
+            box-sizing: border-box;
+        }
+        .image-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+        .image-card h3 {
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+        .image-card p {
+            color: #666;
+            margin: 0;
+        }
+        .product-section {
+            margin-bottom: 60px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Product SVG Images</h1>
+    
+    <div class="product-section">
+        <h2>Samsung Galaxy S24 Ultra</h2>
+        
+        <h3>Main Image</h3>
+        <div class="image-container">
+            <div class="image-card">
+                <img src="samsung-galaxy-s24-ultra.svg" alt="Samsung Galaxy S24 Ultra">
+                <h3>Samsung Galaxy S24 Ultra</h3>
+                <p>Main image</p>
+            </div>
+        </div>
+        
+        <h3>Variant Images</h3>
+        <div class="image-container">
+            <div class="image-card">
+                <img src="samsung-galaxy-s24-ultra-1.svg" alt="Samsung Galaxy S24 Ultra - Blue Variant">
+                <h3>Samsung Galaxy S24 Ultra</h3>
+                <p>Blue Variant</p>
+            </div>
+            <div class="image-card">
+                <img src="samsung-galaxy-s24-ultra-2.svg" alt="Samsung Galaxy S24 Ultra - Green Variant">
+                <h3>Samsung Galaxy S24 Ultra</h3>
+                <p>Green Variant</p>
+            </div>
+            <div class="image-card">
+                <img src="samsung-galaxy-s24-ultra-3.svg" alt="Samsung Galaxy S24 Ultra - Red Variant">
+                <h3>Samsung Galaxy S24 Ultra</h3>
+                <p>Red Variant</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="product-section">
+        <h2>Google Pixel 8 Pro</h2>
+        
+        <h3>Main Image</h3>
+        <div class="image-container">
+            <div class="image-card">
+                <img src="google-pixel-8-pro.svg" alt="Google Pixel 8 Pro">
+                <h3>Google Pixel 8 Pro</h3>
+                <p>Main image</p>
+            </div>
+        </div>
+        
+        <h3>Variant Images</h3>
+        <div class="image-container">
+            <div class="image-card">
+                <img src="google-pixel-8-pro-1.svg" alt="Google Pixel 8 Pro - Black Variant">
+                <h3>Google Pixel 8 Pro</h3>
+                <p>Black Variant</p>
+            </div>
+            <div class="image-card">
+                <img src="google-pixel-8-pro-2.svg" alt="Google Pixel 8 Pro - Green Variant">
+                <h3>Google Pixel 8 Pro</h3>
+                <p>Green Variant</p>
+            </div>
+            <div class="image-card">
+                <img src="google-pixel-8-pro-3.svg" alt="Google Pixel 8 Pro - Coral Variant">
+                <h3>Google Pixel 8 Pro</h3>
+                <p>Coral Variant</p>
+            </div>
+        </div>
+    </div>
+    
+    <h2>Image Paths for Product Data</h2>
+    <h3>Samsung Galaxy S24 Ultra</h3>
+    <pre>
+image: '/images/products/samsung-galaxy-s24-ultra.svg',
+images: [
+  '/images/products/samsung-galaxy-s24-ultra.svg',
+  '/images/products/samsung-galaxy-s24-ultra-1.svg',
+  '/images/products/samsung-galaxy-s24-ultra-2.svg',
+  '/images/products/samsung-galaxy-s24-ultra-3.svg',
+],
+    </pre>
+    
+    <h3>Google Pixel 8 Pro</h3>
+    <pre>
+image: '/images/products/google-pixel-8-pro.svg',
+images: [
+  '/images/products/google-pixel-8-pro.svg',
+  '/images/products/google-pixel-8-pro-1.svg',
+  '/images/products/google-pixel-8-pro-2.svg',
+  '/images/products/google-pixel-8-pro-3.svg',
+],
+    </pre>
+</body>
+</html> 

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fallback Product Images</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .canvas-container {
+      margin: 20px 0;
+      text-align: center;
+    }
+    canvas {
+      border: 1px solid #ddd;
+      max-width: 100%;
+    }
+    .controls {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .download-link {
+      display: block;
+      margin-top: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Fallback Product Images Generator</h1>
+    
+    <div class="controls">
+      <label for="product-name">Product Name:</label>
+      <input type="text" id="product-name" placeholder="Enter product name" value="Samsung Galaxy S24 Ultra">
+      
+      <label for="background-color">Background Color:</label>
+      <input type="color" id="background-color" value="#ffffff">
+      
+      <label for="text-color">Text Color:</label>
+      <input type="color" id="text-color" value="#333333">
+      
+      <label for="category">Category Icon:</label>
+      <select id="category">
+        <option value="smartphone">Smartphone</option>
+        <option value="laptop">Laptop</option>
+        <option value="headphone">Headphone</option>
+        <option value="tv">TV</option>
+        <option value="camera">Camera</option>
+        <option value="other">Other</option>
+      </select>
+      
+      <button id="generate-btn">Generate Image</button>
+    </div>
+    
+    <div class="canvas-container">
+      <canvas id="product-canvas" width="800" height="800"></canvas>
+      <a id="download-link" class="download-link" download="product-image.jpg">Download Image</a>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const canvas = document.getElementById('product-canvas');
+      const ctx = canvas.getContext('2d');
+      const downloadLink = document.getElementById('download-link');
+      const generateBtn = document.getElementById('generate-btn');
+      
+      // Category icons (simple shapes)
+      const categoryIcons = {
+        smartphone: function(x, y, size) {
+          ctx.beginPath();
+          ctx.roundRect(x - size/3, y - size/2, size*2/3, size, size/10);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(x, y + size/3, size/15, 0, Math.PI * 2);
+          ctx.stroke();
+        },
+        laptop: function(x, y, size) {
+          ctx.beginPath();
+          ctx.moveTo(x - size/2, y - size/4);
+          ctx.lineTo(x + size/2, y - size/4);
+          ctx.lineTo(x + size/2, y + size/8);
+          ctx.lineTo(x - size/2, y + size/8);
+          ctx.closePath();
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.moveTo(x - size*0.6, y + size/8);
+          ctx.lineTo(x + size*0.6, y + size/8);
+          ctx.lineTo(x + size*0.5, y + size/4);
+          ctx.lineTo(x - size*0.5, y + size/4);
+          ctx.closePath();
+          ctx.stroke();
+        },
+        headphone: function(x, y, size) {
+          ctx.beginPath();
+          ctx.arc(x - size/3, y, size/5, Math.PI/2, Math.PI * 3/2);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(x + size/3, y, size/5, -Math.PI/2, Math.PI/2);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(x, y - size/2, size/2, 0, Math.PI);
+          ctx.stroke();
+        },
+        tv: function(x, y, size) {
+          ctx.beginPath();
+          ctx.rect(x - size/2, y - size/3, size, size*2/3);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.moveTo(x - size/4, y + size/3);
+          ctx.lineTo(x + size/4, y + size/3);
+          ctx.lineTo(x, y + size/2);
+          ctx.closePath();
+          ctx.stroke();
+        },
+        camera: function(x, y, size) {
+          ctx.beginPath();
+          ctx.roundRect(x - size/2, y - size/4, size, size/2, size/20);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(x, y, size/5, 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.rect(x - size/4, y - size/3, size/2, size/10);
+          ctx.stroke();
+        },
+        other: function(x, y, size) {
+          ctx.beginPath();
+          ctx.arc(x, y, size/3, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+      };
+      
+      function generateImage() {
+        const productName = document.getElementById('product-name').value || 'Product';
+        const bgColor = document.getElementById('background-color').value;
+        const textColor = document.getElementById('text-color').value;
+        const category = document.getElementById('category').value;
+        
+        // Clear canvas
+        ctx.fillStyle = bgColor;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Draw border
+        ctx.strokeStyle = '#dddddd';
+        ctx.lineWidth = 4;
+        ctx.strokeRect(10, 10, canvas.width - 20, canvas.height - 20);
+        
+        // Draw category icon
+        ctx.strokeStyle = textColor;
+        ctx.lineWidth = 3;
+        if (categoryIcons[category]) {
+          categoryIcons[category](canvas.width / 2, canvas.height / 2 - 100, 200);
+        }
+        
+        // Draw product name
+        ctx.fillStyle = textColor;
+        ctx.font = 'bold 40px Arial';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        
+        // Wrap text if needed
+        const words = productName.split(' ');
+        const lines = [];
+        let currentLine = words[0];
+        
+        for (let i = 1; i < words.length; i++) {
+          const testLine = currentLine + ' ' + words[i];
+          const metrics = ctx.measureText(testLine);
+          
+          if (metrics.width < canvas.width - 100) {
+            currentLine = testLine;
+          } else {
+            lines.push(currentLine);
+            currentLine = words[i];
+          }
+        }
+        lines.push(currentLine);
+        
+        // Draw each line
+        const lineHeight = 50;
+        const startY = canvas.height / 2 + 100;
+        
+        lines.forEach((line, index) => {
+          ctx.fillText(line, canvas.width / 2, startY + index * lineHeight);
+        });
+        
+        // Update download link
+        downloadLink.href = canvas.toDataURL('image/jpeg');
+        downloadLink.download = productName.toLowerCase().replace(/\s+/g, '-') + '.jpg';
+      }
+      
+      // Generate initial image
+      generateImage();
+      
+      // Add event listener to button
+      generateBtn.addEventListener('click', generateImage);
+    });
+  </script>
+</body>
+</html> 

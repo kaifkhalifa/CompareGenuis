@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Image Placeholders</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .instructions {
+      background-color: #f5f5f5;
+      padding: 20px;
+      border-radius: 5px;
+      margin-bottom: 30px;
+    }
+    .placeholder-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .placeholder {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .placeholder-image {
+      width: 100%;
+      height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f0f0f0;
+      color: #333;
+      font-weight: bold;
+      text-align: center;
+      padding: 10px;
+    }
+    .placeholder-info {
+      padding: 10px;
+    }
+    .placeholder-name {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .download-btn {
+      display: block;
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+      padding: 8px;
+      text-decoration: none;
+      border-radius: 4px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Product Image Placeholders</h1>
+  
+  <div class="instructions">
+    <h2>Instructions:</h2>
+    <p>This page displays placeholder images for products. To save an image:</p>
+    <ol>
+      <li>Right-click on the placeholder image</li>
+      <li>Select "Save Image As..."</li>
+      <li>Save with the filename shown below each image</li>
+    </ol>
+  </div>
+  
+  <div class="placeholder-grid">
+    <!-- Dell XPS 15 -->
+    <div class="placeholder">
+      <div class="placeholder-image" id="dell-xps-15">Dell XPS 15</div>
+      <div class="placeholder-info">
+        <div class="placeholder-name">dell-xps-15.jpg</div>
+      </div>
+    </div>
+    <div class="placeholder">
+      <div class="placeholder-image" id="dell-xps-15-1">Dell XPS 15 - View 1</div>
+      <div class="placeholder-info">
+        <div class="placeholder-name">dell-xps-15-1.jpg</div>
+      </div>
+    </div>
+    <div class="placeholder">
+      <div class="placeholder-image" id="dell-xps-15-2">Dell XPS 15 - View 2</div>
+      <div class="placeholder-info">
+        <div class="placeholder-name">dell-xps-15-2.jpg</div>
+      </div>
+    </div>
+    <div class="placeholder">
+      <div class="placeholder-image" id="dell-xps-15-3">Dell XPS 15 - View 3</div>
+      <div class="placeholder-info">
+        <div class="placeholder-name">dell-xps-15-3.jpg</div>
+      </div>
+    </div>
+    
+    <!-- Google Pixel 8 Pro -->
+    <div class="placeholder">
+      <div class="placeholder-image" id="google-pixel-8-pro">Google Pixel 8 Pro</div>
+      <div class="placeholder-info">
+        <div class="placeholder-name">google-pixel-8-pro.jpg</div>
+      </div>
+    </div>
+    <div class="placeholder">
+      <div class="placeholder-image" id="google-pixel-8-pro-1">Google Pixel 8 Pro - View 1</div>
+      <div class="placeholder-info">
+        <div class="placeholder-name">google-pixel-8-pro-1.jpg</div>
+      </div>
+    </div>
+    <div class="placeholder">
+      <div class="placeholder-image" id="google-pixel-8-pro-2">Google Pixel 8 Pro - View 2</div>
+      <div class="placeholder-info">
+        <div class="placeholder-name">google-pixel-8-pro-2.jpg</div>
+      </div>
+    </div>
+    <div class="placeholder">
+      <div class="placeholder-image" id="google-pixel-8-pro-3">Google Pixel 8 Pro - View 3</div>
+      <div class="placeholder-info">
+        <div class="placeholder-name">google-pixel-8-pro-3.jpg</div>
+      </div>
+    </div>
+    
+    <!-- Samsung Galaxy S23+ -->
+    <div class="placeholder">
+      <div class="placeholder-image" id="samsung-galaxy-s23-plus">Samsung Galaxy S23+</div>
+      <div class="placeholder-info">
+        <div class="placeholder-name">samsung-galaxy-s23-plus.jpg</div>
+      </div>
+    </div>
+    
+    <!-- Add more placeholders for other products as needed -->
+  </div>
+
+  <script>
+    // Convert placeholders to canvas elements for easy saving
+    document.addEventListener('DOMContentLoaded', function() {
+      const placeholders = document.querySelectorAll('.placeholder-image');
+      
+      placeholders.forEach(placeholder => {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Set canvas dimensions
+        canvas.width = 800;
+        canvas.height = 800;
+        
+        // Draw background
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Draw border
+        ctx.strokeStyle = '#dddddd';
+        ctx.lineWidth = 4;
+        ctx.strokeRect(10, 10, canvas.width - 20, canvas.height - 20);
+        
+        // Draw text
+        ctx.fillStyle = '#333333';
+        ctx.font = 'bold 40px Arial';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        
+        // Wrap text if needed
+        const text = placeholder.textContent;
+        const words = text.split(' ');
+        const lines = [];
+        let currentLine = words[0];
+        
+        for (let i = 1; i < words.length; i++) {
+          const testLine = currentLine + ' ' + words[i];
+          const metrics = ctx.measureText(testLine);
+          
+          if (metrics.width < canvas.width - 100) {
+            currentLine = testLine;
+          } else {
+            lines.push(currentLine);
+            currentLine = words[i];
+          }
+        }
+        lines.push(currentLine);
+        
+        // Draw each line
+        const lineHeight = 50;
+        const startY = canvas.height / 2 - (lines.length - 1) * lineHeight / 2;
+        
+        lines.forEach((line, index) => {
+          ctx.fillText(line, canvas.width / 2, startY + index * lineHeight);
+        });
+        
+        // Replace div content with canvas
+        placeholder.innerHTML = '';
+        placeholder.appendChild(canvas);
+        
+        // Add product category color indicator
+        if (placeholder.id.includes('iphone') || placeholder.id.includes('galaxy') || placeholder.id.includes('pixel')) {
+          const indicator = document.createElement('div');
+          indicator.style.position = 'absolute';
+          indicator.style.top = '10px';
+          indicator.style.right = '10px';
+          indicator.style.width = '20px';
+          indicator.style.height = '20px';
+          indicator.style.borderRadius = '50%';
+          indicator.style.backgroundColor = '#3498db'; // Blue for smartphones
+          placeholder.style.position = 'relative';
+          placeholder.appendChild(indicator);
+        }
+      });
+    });
+  </script>
+</body>
+</html> 
